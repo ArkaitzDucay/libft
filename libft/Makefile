@@ -1,19 +1,37 @@
-NAME = libft.a
-SRC = ft_strlen.c
-OBJ = $(SRC:.c=.o)
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-AR = ar rcs
+# ----------------------
+#        LIBFT
+# ----------------------
+
+NAME    = libft.a
+SRC     = $(wildcard *.c)
+OBJ     = $(SRC:.c=.o)
+CC      = gcc
+CFLAGS  = -Wall -Wextra -Werror
+
+# ----------------------
+#      TEST PROGRAM
+# ----------------------
+
+TEST_NAME = test.exe
+TEST_SRC  = main.c
+TEST_OBJ  = $(TEST_SRC:.c=.o)
+
+# ----------------------
+#        RULES
+# ----------------------
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(AR) $(NAME) $(OBJ)
+	ar rcs $(NAME) $(OBJ)
+
+test: $(NAME) $(TEST_OBJ)
+	$(CC) $(CFLAGS) $(TEST_SRC) -L. -lft -o $(TEST_NAME)
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(TEST_OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(TEST_NAME)
 
 re: fclean all
