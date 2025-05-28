@@ -78,5 +78,53 @@ int main(void)
         printf("%c", buffer3[i]);
     printf("\n");
 
+        // --- Nuevas funciones añadidas ---
+
+    // ft_strrchr
+    const char *cadena2 = "Hola mundo";
+    char *resultado2 = ft_strrchr(cadena2, 'o');
+    if (resultado2)
+        printf("strrchr: se encontro 'o' en -> %s\n", resultado2);
+    else
+        printf("strrchr: 'o' no se encontro\n");
+
+    // ft_memchr
+    char datos[] = {1, 2, 3, 4, 5};
+    void *ptr = ft_memchr(datos, 3, 5);
+    if (ptr)
+        printf("memchr: encontrado el valor 3 en la posicion %ld\n", (long)((char *)ptr - datos));
+    else
+        printf("memchr: valor no encontrado\n");
+
+    // ft_memcmp
+    char cmp1[] = "Hola";
+    char cmp2[] = "Holi";
+    printf("memcmp: resultado = %d\n", ft_memcmp(cmp1, cmp2, 4));
+
+    // ft_strnstr
+    const char *texto2 = "Esta es una cadena de prueba";
+    const char *busqueda = "cadena";
+    char *res = ft_strnstr(texto2, busqueda, 25);
+    if (res)
+        printf("strnstr: se encontro \"%s\" -> %s\n", busqueda, res);
+    else
+        printf("strnstr: no se encontro \"%s\"\n", busqueda);
+
+    // ft_atoi
+    const char *numtxt = "  -1234abc";
+    int numero = ft_atoi(numtxt);
+    printf("atoi: \"%s\" -> %d\n", numtxt, numero);
+
+    // ft_calloc
+    int *array = (int *)ft_calloc(5, sizeof(int));
+    if (array)
+    {
+        printf("calloc: array inicializado =");
+        for (int i = 0; i < 5; i++)
+            printf(" %d", array[i]);
+        printf("\n");
+        free(array);
+    }
+
     return 0;
 }
